@@ -18,7 +18,6 @@ header {
     background: linear-gradient(135deg, #1e3a8a, #0f172a);
     padding: 25px 15px;
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 header img {
@@ -26,7 +25,6 @@ header img {
     margin: 15px auto;
     border-radius: 50%;
     border: 3px solid rgba(34,197,94,0.4);
-    box-shadow: 0 0 18px rgba(34,197,94,0.15);
 }
 
 /* CONTAINER */
@@ -36,57 +34,38 @@ header img {
     padding: 18px;
 }
 
-/* GLASS CARDS */
+/* CARDS */
 .card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 16px;
     margin-top: 18px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
 }
 
 /* PORTFOLIO */
 .portfolio-grid {
     display: grid;
     gap: 12px;
-    margin-top: 10px;
 }
 
 .port-box {
     background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 15px;
     border-radius: 12px;
+    padding: 15px;
 }
 
 .port-title {
     font-size: 12px;
     color: #94a3b8;
-    margin: 0;
 }
 
 .port-value {
     font-size: 22px;
-    margin: 5px 0 0 0;
 }
 
 .green {
     color: #22c55e;
-}
-
-/* PLANS */
-.plans {
-    display: grid;
-    gap: 12px;
-}
-
-.plan {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    padding: 15px;
-    border-radius: 12px;
 }
 
 /* WALLET */
@@ -95,8 +74,6 @@ header img {
     border: 1px solid rgba(14,165,233,0.3);
     padding: 14px;
     border-radius: 12px;
-    word-break: break-all;
-    font-weight: bold;
 }
 
 /* BUTTON */
@@ -108,7 +85,6 @@ button {
     cursor: pointer;
     background: linear-gradient(135deg, #22c55e, #16a34a);
     color: white;
-    font-weight: 600;
     width: 100%;
 }
 
@@ -124,16 +100,12 @@ footer {
 #loadingOverlay {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-    color: white;
 }
 
 .spinner {
@@ -143,38 +115,55 @@ footer {
     border-top: 4px solid #22c55e;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 15px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
-/* 🔔 TOAST POPUP */
+/* TOAST */
 .toast {
     position: fixed;
     top: 20px;
     right: 20px;
     background: rgba(34,197,94,0.15);
     border: 1px solid rgba(34,197,94,0.4);
-    backdrop-filter: blur(10px);
-    padding: 12px 14px;
+    padding: 12px;
     border-radius: 12px;
     display: none;
-    z-index: 10000;
 }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    header img { width: 140px; }
-    .container { padding: 12px; }
-    .card { padding: 16px; }
+/* MODAL */
+#successModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(34,197,94,0.4);
+    padding: 25px;
+    border-radius: 18px;
+}
+
+/* FLOATING CHANGE EFFECT */
+.glow {
+    transition: all 0.3s ease;
+    color: #22c55e;
 }
 </style>
 </head>
 
 <body>
+
+<!-- SOUND -->
+<audio id="notifySound" src="notify.mp3" preload="auto"></audio>
 
 <!-- LOADING -->
 <div id="loadingOverlay">
@@ -185,73 +174,41 @@ footer {
 <!-- TOAST -->
 <div id="toast" class="toast"></div>
 
+<!-- SUCCESS MODAL -->
+<div id="successModal">
+    <div class="modal-box">
+        <h2>✓ Deposit Confirmed</h2>
+        <p>We will notify you once we receive your payment.</p>
+    </div>
+</div>
+
 <header>
     <h1>Investment Dashboard</h1>
     <p>Track plans and payment details</p>
 
-    <img src="file_00000000a508720c8a70e1680c2add19.png" width="180">
+    <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
-    <p>Bitcoin & Cryptocurrency Market Analyst</p>
-    <p>Providing educational market analysis, trend insights, and portfolio-tracking guidance.</p>
 </header>
 
 <div class="container">
 
-    <!-- PORTFOLIO -->
     <div class="card">
-        <h2>Portfolio Dashboard</h2>
+        <h2>Portfolio</h2>
 
         <div class="portfolio-grid">
-
             <div class="port-box">
-                <p class="port-title">Total Portfolio Value</p>
+                <p class="port-title">Total Value</p>
                 <h3 class="port-value">
-                    $12,850.00 
-                    <span class="green" style="font-size:12px;">+12.4%</span>
+                    $<span id="portfolioValue">12850</span>
+                    <span class="green">+<span id="portfolioPercent">12.4</span>%</span>
                 </h3>
             </div>
-
-            <div class="port-box">
-                <p class="port-title">Active Plans</p>
-                <h3 class="port-value">3</h3>
-            </div>
-
-            <div class="port-box">
-                <p class="port-title">Account Status</p>
-                <h3 class="port-value green">Verified</h3>
-            </div>
-
         </div>
     </div>
 
-    <!-- TRANSACTIONS -->
     <div class="card">
-        <h2>Recent Transactions</h2>
-
-        <div class="tx-list">
-
-            <div class="plan">BTC Deposit +$2,500</div>
-            <div class="plan">Investment -$500</div>
-            <div class="plan">Referral +$150</div>
-
-        </div>
-    </div>
-
-    <!-- PLANS -->
-    <div class="card">
-        <h2>Investment Plans</h2>
-
-        <div class="plans">
-            <div class="plan">Starter $100 - 7 Days</div>
-            <div class="plan">Standard $500 - 14 Days</div>
-            <div class="plan">Premium $1000+ - 30 Days</div>
-        </div>
-    </div>
-
-    <!-- WALLET -->
-    <div class="card">
-        <h2>Wallet Address</h2>
+        <h2>Wallet</h2>
 
         <div class="wallet" id="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
@@ -260,7 +217,7 @@ footer {
         <button onclick="copyWallet()">Copy Wallet</button>
         <button onclick="goToThankYou(this)">Done</button>
 
-        <p>Send BTC only. Double-check address.</p>
+        <p>Send BTC only</p>
     </div>
 
 </div>
@@ -268,44 +225,65 @@ footer {
 <footer>© 2026 Investment Dashboard</footer>
 
 <script>
+/* COPY */
 function copyWallet() {
-    navigator.clipboard.writeText(
-        document.getElementById("wallet").innerText
-    );
-    showToast("Wallet copied successfully");
+    navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+    showToast("Wallet copied");
 }
 
-function goToThankYou(btn) {
-    btn.disabled = true;
-    btn.innerText = "Processing...";
-    document.getElementById("loadingOverlay").style.display = "flex";
-
-    setTimeout(() => {
-        window.location.href = "thankyou.html";
-    }, 2500);
-}
-
-/* 🔔 LIVE POPUP */
+/* TOAST */
 function showToast(msg) {
     const toast = document.getElementById("toast");
     toast.innerText = "🔔 " + msg;
     toast.style.display = "block";
-
-    setTimeout(() => {
-        toast.style.display = "none";
-    }, 3000);
+    setTimeout(() => toast.style.display = "none", 3000);
 }
 
-/* fake live transactions */
-setInterval(() => {
-    const msgs = [
-        "BTC Deposit +$1,200",
-        "Portfolio Updated +$980",
-        "Mining Reward +$430"
-    ];
+/* PORTFOLIO ANIMATION */
+function animatePortfolio() {
+    let value = 12000;
+    let percent = 10;
 
-    showToast(msgs[Math.floor(Math.random() * msgs.length)]);
-}, 8000);
+    const v = setInterval(() => {
+        value += 40;
+        document.getElementById("portfolioValue").innerText = value;
+        if (value >= 12850) clearInterval(v);
+    }, 30);
+
+    const p = setInterval(() => {
+        percent += 0.05;
+        document.getElementById("portfolioPercent").innerText = percent.toFixed(1);
+        if (percent >= 12.4) clearInterval(p);
+    }, 40);
+}
+
+/* SOUND */
+function playSound() {
+    const audio = document.getElementById("notifySound");
+    audio.currentTime = 0;
+    audio.play();
+}
+
+/* MAIN FLOW */
+function goToThankYou(btn) {
+    btn.disabled = true;
+    btn.innerText = "Processing...";
+
+    document.getElementById("loadingOverlay").style.display = "flex";
+
+    setTimeout(() => {
+        document.getElementById("loadingOverlay").style.display = "none";
+        document.getElementById("successModal").style.display = "flex";
+
+        playSound();
+        animatePortfolio();
+
+        setTimeout(() => {
+            window.location.href = "thankyou.html";
+        }, 2500);
+
+    }, 2000);
+}
 </script>
 
 </body>
