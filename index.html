@@ -56,10 +56,24 @@
         font-weight: bold;
     }
 
-    .contact {
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
         background: #22c55e;
-        padding: 15px;
-        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+        width: 100%;
+    }
+
+    button:hover {
+        background: #16a34a;
+    }
+
+    .contact {
+        background: #1f2937;
     }
 
     footer {
@@ -115,22 +129,32 @@
 
     <div class="card">
         <h2>Wallet Address</h2>
-        <div class="wallet">
-            bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
+
+        <div class="wallet" id="wallet">
+           bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
+
+        <button onclick="copyWallet()">Copy Wallet Address</button>
+
         <p>Send BTC only. Double-check address before sending.</p>
     </div>
 
     <div class="card contact">
         <h2>Contact</h2>
         <p>Telegram: @Ethervision35</p>
-    </div>
-
     <footer>
         © 2026 Investment Dashboard
     </footer>
 
 </div>
+
+<script>
+function copyWallet() {
+    const wallet = document.getElementById("wallet").innerText;
+    navigator.clipboard.writeText(wallet);
+    alert("Wallet copied!");
+}
+</script>
 
 </body>
 </html>
