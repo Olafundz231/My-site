@@ -144,9 +144,7 @@
         </div>
 
         <button onclick="copyWallet()">Copy Wallet Address</button>
-        <button onclick="paymentSent()">Done</button>
-
-        <p id="message"></p>
+        <button onclick="goToThankYou()">Done</button>
 
         <p>Send BTC only. Double-check address before sending.</p>
     </div>
@@ -176,11 +174,60 @@ function copyWallet() {
         });
 }
 
-function paymentSent() {
-    document.getElementById("message").innerText =
-        "✅ Thanks for trusting us! Your payment notification has been received.";
+function goToThankYou() {
+    window.location.href = "thankyou.html";
 }
 </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmation</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .box {
+        background: #1e293b;
+        padding: 30px;
+        border-radius: 12px;
+        max-width: 500px;
+    }
+
+    h1 {
+        color: #22c55e;
+        margin-bottom: 10px;
+    }
+
+    p {
+        color: #cbd5e1;
+        line-height: 1.6;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>✅ Payment Submitted</h1>
+    <p>Thank you for your payment.</p>
+    <p>We will notify you once we receive your payment.</p>
+</div>
 
 </body>
 </html>
