@@ -111,6 +111,26 @@ footer {
     z-index: 9999;
 }
 
+/* MODAL */
+#successModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10000;
+}
+
+.modal-box {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(34,197,94,0.4);
+    padding: 25px;
+    border-radius: 18px;
+}
+
+/* SPINNER */
 .spinner {
     width: 50px;
     height: 50px;
@@ -123,50 +143,10 @@ footer {
 @keyframes spin {
     100% { transform: rotate(360deg); }
 }
-
-/* TOAST */
-.toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: rgba(34,197,94,0.15);
-    border: 1px solid rgba(34,197,94,0.4);
-    padding: 12px;
-    border-radius: 12px;
-    display: none;
-}
-
-/* SUCCESS MODAL */
-#successModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    z-index: 10000;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.modal-box {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(34,197,94,0.4);
-    padding: 25px;
-    border-radius: 18px;
-}
-
-/* ✨ ONLY ADDITION: highlight animation */
-.glow {
-    transition: 0.3s;
-    color: #22c55e;
-}
 </style>
 </head>
 
 <body>
-
-<!-- AUDIO -->
-<audio id="notifySound" src="notify.mp3" preload="auto"></audio>
 
 <!-- LOADING -->
 <div id="loadingOverlay">
@@ -174,13 +154,11 @@ footer {
     <h3>Processing transaction...</h3>
 </div>
 
-<!-- TOAST -->
-<div id="toast" class="toast"></div>
-
 <!-- SUCCESS MODAL -->
 <div id="successModal">
     <div class="modal-box">
         <h2>✓ Deposit Confirmed</h2>
+        <p>Your transaction has been submitted successfully.</p>
         <p>We will notify you once we receive your payment.</p>
     </div>
 </div>
@@ -192,25 +170,30 @@ footer {
     <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
+    <p>Bitcoin & Crypto Analyst</p>
 </header>
 
 <div class="container">
 
-    <!-- PORTFOLIO (RESTORED EXACT STRUCTURE + ANIMATION READY) -->
+    <!-- PORTFOLIO -->
     <div class="card">
         <h2>Portfolio</h2>
 
         <div class="portfolio-grid">
             <div class="port-box">
                 <p class="port-title">Total Value</p>
-                <h3 class="port-value">
-                    $<span id="portfolioValue">12850</span>
-                    <span class="green">+<span id="portfolioPercent">12.4</span>%</span>
-                </h3>
+                <h3 class="port-value" id="portfolioValue">$12,850 <span class="green">+12.4%</span></h3>
             </div>
         </div>
     </div>
 
+    <!-- PLANS -->
+    <div class="card">
+        <h2>Investment Plans</h2>
+        <p>Starter • Standard • Premium</p>
+    </div>
+
+    <!-- WALLET -->
     <div class="card">
         <h2>Wallet</h2>
 
@@ -228,54 +211,26 @@ footer {
 
 <footer>© 2026 Investment Dashboard</footer>
 
+<!-- SOUND -->
+<audio id="ding" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
+
 <script>
 
-/* COPY */
 function copyWallet() {
     navigator.clipboard.writeText(document.getElementById("wallet").innerText);
-    showToast("Wallet copied");
 }
 
-/* TOAST */
-function showToast(msg) {
-    const toast = document.getElementById("toast");
-    toast.innerText = "🔔 " + msg;
-    toast.style.display = "block";
-    setTimeout(() => toast.style.display = "none", 3000);
-}
+/* ✅ AUTO GROW PORTFOLIO */
+let value = 12850;
+setInterval(() => {
+    let increase = Math.floor(Math.random() * 40);
+    value += increase;
 
-/* 🔊 SOUND */
-function playSound() {
-    const audio = document.getElementById("notifySound");
-    audio.currentTime = 0;
-    audio.play();
-}
+    document.getElementById("portfolioValue").innerHTML =
+        "$" + value.toLocaleString() + ' <span class="green">+12.4%</span>';
+}, 4000);
 
-/* 📈 PORTFOLIO ANIMATION (SAFE ADDED FEATURE) */
-function animatePortfolio() {
-    let value = 12000;
-    let percent = 10;
-
-    const v = setInterval(() => {
-        value += 35;
-        if (value >= 12850) {
-            value = 12850;
-            clearInterval(v);
-        }
-        document.getElementById("portfolioValue").innerText = value.toLocaleString();
-    }, 30);
-
-    const p = setInterval(() => {
-        percent += 0.05;
-        if (percent >= 12.4) {
-            percent = 12.4;
-            clearInterval(p);
-        }
-        document.getElementById("portfolioPercent").innerText = percent.toFixed(1);
-    }, 40);
-}
-
-/* MAIN FLOW (UNCHANGED LOGIC) */
+/* ✅ SOUND + CONFIRM FLOW */
 function goToThankYou(btn) {
     btn.disabled = true;
     btn.innerText = "Processing...";
@@ -286,8 +241,7 @@ function goToThankYou(btn) {
         document.getElementById("loadingOverlay").style.display = "none";
         document.getElementById("successModal").style.display = "flex";
 
-        playSound();
-        animatePortfolio();
+        document.getElementById("ding").play();
 
         setTimeout(() => {
             window.location.href = "thankyou.html";
