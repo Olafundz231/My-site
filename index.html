@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Dashboard</title>
+<title>Investment Dashboard</title>
 
 <style>
     body {
@@ -57,7 +57,9 @@
     }
 
     .contact {
-        background: #1f2937;
+        background: #22c55e;
+        padding: 15px;
+        border-radius: 10px;
     }
 
     footer {
@@ -66,16 +68,6 @@
         font-size: 12px;
         color: #94a3b8;
     }
-
-    /* small improvement for mobile */
-    @media (max-width: 600px) {
-        .container {
-            padding: 10px;
-        }
-        .card {
-            padding: 15px;
-        }
-    }
 </style>
 
 </head>
@@ -83,47 +75,50 @@
 <body>
 
 <header>
-    <h1>Crypto Dashboard</h1>
-    <p>Wallet and information overview</p>
+    <h1>Investment Dashboard</h1>
+    <p>Track plans and payment details</p>
 </header>
 
 <div class="container">
 
     <div class="card">
         <h2>About</h2>
-        <p>This page shows wallet details and available participation information.</p>
+        <p>This dashboard provides information about available investment plans and wallet details.</p>
     </div>
 
     <div class="card">
-        <h2>Information Plans</h2>
+        <h2>Investment Plans</h2>
 
         <div class="plans">
             <div class="plan">
-                <h3>Starter Info</h3>
-                <p>Basic participation information</p>
+                <h3>Starter Plan</h3>
+                <p>Amount: $100</p>
+                <p>Duration: 7 Days</p>
+                <p>Return: 5% - 10%</p>
             </div>
 
             <div class="plan">
-                <h3>Standard Info</h3>
-                <p>Intermediate participation information</p>
+                <h3>Standard Plan</h3>
+                <p>Amount: $500</p>
+                <p>Duration: 14 Days</p>
+                <p>Return: 10% - 20%</p>
             </div>
 
             <div class="plan">
-                <h3>Premium Info</h3>
-                <p>Advanced participation information</p>
+                <h3>Premium Plan</h3>
+                <p>Amount: $1000+</p>
+                <p>Duration: 30 Days</p>
+                <p>Return: 20% - 40%</p>
             </div>
         </div>
     </div>
 
     <div class="card">
         <h2>Wallet Address</h2>
-
         <div class="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
-
-        <p>Network: Bitcoin (BTC)</p>
-        <p>Always verify wallet before sending funds.</p>
+        <p>Send BTC only. Double-check address before sending.</p>
     </div>
 
     <div class="card contact">
@@ -132,7 +127,7 @@
     </div>
 
     <footer>
-        © 2026 Crypto Dashboard
+        © 2026 Investment Dashboard
     </footer>
 
 </div>
