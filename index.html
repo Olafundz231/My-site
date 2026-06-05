@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Crypto Profile</title>
 
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
 <style>
     body {
         margin: 0;
@@ -38,7 +40,6 @@
         border-radius: 10px;
         word-break: break-all;
         font-weight: bold;
-        font-size: 14px;
     }
 
     button {
@@ -66,6 +67,14 @@
 
     .contact {
         background: #1f2937;
+    }
+
+    #qrcode {
+        margin-top: 15px;
+        background: white;
+        padding: 10px;
+        display: inline-block;
+        border-radius: 10px;
     }
 
     .note {
@@ -103,30 +112,32 @@
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
 
-        <button onclick="copyWallet()">Copy Wallet Address</button>
+        <button onclick="copyWallet()">Copy Wallet</button>
+
+        <div id="qrcode"></div>
     </div>
 
-    <!-- Plans -->
+    <!-- Plans (INFO ONLY) -->
     <div class="card">
         <h2>Information Plans</h2>
 
         <div class="plan">
             <h3>Starter Info</h3>
-            <p>Basic crypto participation information.</p>
+            <p>Basic entry information for crypto participation.</p>
         </div>
 
         <div class="plan">
             <h3>Standard Info</h3>
-            <p>Mid-level crypto participation information.</p>
+            <p>Medium-level participation information.</p>
         </div>
 
         <div class="plan">
             <h3>Premium Info</h3>
-            <p>Advanced crypto participation information.</p>
+            <p>Advanced-level participation information.</p>
         </div>
 
         <div class="note">
-            ⚠️ Always verify wallet address before sending crypto. Blockchain transactions are irreversible.
+            ⚠️ Always verify wallet address before sending crypto. Transactions are irreversible.
         </div>
     </div>
 
@@ -148,6 +159,9 @@ function copyWallet() {
     navigator.clipboard.writeText(wallet);
     alert("Wallet copied!");
 }
+
+const wallet = document.getElementById("wallet").innerText;
+QRCode.toCanvas(document.getElementById("qrcode"), wallet);
 </script>
 
 </body>
