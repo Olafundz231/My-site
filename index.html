@@ -6,84 +6,74 @@
 <title>Investment Dashboard</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: white;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
 
-    header {
-        background: #1e3a8a;
-        padding: 20px;
-        text-align: center;
-    }
+header {
+    background: #1e3a8a;
+    padding: 20px;
+    text-align: center;
+}
 
-    .container {
-        max-width: 900px;
-        margin: auto;
-        padding: 20px;
-    }
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
 
-    .card {
-        background: #1e293b;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 20px;
-    }
+.card {
+    background: #1e293b;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
 
-    h1, h2 {
-        margin: 0 0 10px;
-    }
+.plans {
+    display: grid;
+    gap: 15px;
+}
 
-    .plans {
-        display: grid;
-        gap: 15px;
-        margin-top: 15px;
-    }
+.plan {
+    background: #334155;
+    padding: 15px;
+    border-radius: 10px;
+}
 
-    .plan {
-        background: #334155;
-        padding: 15px;
-        border-radius: 10px;
-    }
+.wallet {
+    background: #0ea5e9;
+    padding: 15px;
+    border-radius: 10px;
+    word-break: break-all;
+    font-weight: bold;
+}
 
-    .wallet {
-        background: #0ea5e9;
-        padding: 15px;
-        border-radius: 10px;
-        word-break: break-all;
-        font-weight: bold;
-    }
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #22c55e;
+    color: white;
+    font-weight: bold;
+    width: 100%;
+}
 
-    button {
-        margin-top: 10px;
-        padding: 10px;
-        border: none;
-        border-radius: 8px;
-        cursor: pointer;
-        background: #22c55e;
-        color: white;
-        font-weight: bold;
-        width: 100%;
-    }
+button:hover {
+    background: #16a34a;
+}
 
-    button:hover {
-        background: #16a34a;
-    }
-
-    .contact {
-        background: #1f2937;
-    }
-
-    footer {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 12px;
-        color: #94a3b8;
-    }
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #94a3b8;
+}
 </style>
-
 </head>
 
 <body>
@@ -91,23 +81,9 @@
 <header>
     <h1>Investment Dashboard</h1>
     <p>Track plans and payment details</p>
-
-    <img src="file_00000000a508720c8a70e1680c2add19.png"
-     alt="Header Image"
-     width="220"
-     style="display:block;margin:0 auto 15px auto;border-radius:50%;">
-
-    <h2>Benjamin Cowen</h2>
-    <p>Bitcoin & Cryptocurrency Market Analyst</p>
-    <p>Providing educational market analysis, trend insights, and portfolio-tracking guidance for cryptocurrency investors.</p>
 </header>
 
 <div class="container">
-
-    <div class="card">
-        <h2>About</h2>
-        <p>This dashboard provides information about available investment plans and wallet details.</p>
-    </div>
 
     <div class="card">
         <h2>Investment Plans</h2>
@@ -115,23 +91,17 @@
         <div class="plans">
             <div class="plan">
                 <h3>Starter Plan</h3>
-                <p>Amount: $100</p>
-                <p>Duration: 7 Days</p>
-                <p>Return: 5% - 10%</p>
+                <p>$100 - 7 Days</p>
             </div>
 
             <div class="plan">
                 <h3>Standard Plan</h3>
-                <p>Amount: $500</p>
-                <p>Duration: 14 Days</p>
-                <p>Return: 10% - 20%</p>
+                <p>$500 - 14 Days</p>
             </div>
 
             <div class="plan">
                 <h3>Premium Plan</h3>
-                <p>Amount: $1000+</p>
-                <p>Duration: 30 Days</p>
-                <p>Return: 20% - 40%</p>
+                <p>$1000+ - 30 Days</p>
             </div>
         </div>
     </div>
@@ -140,38 +110,25 @@
         <h2>Wallet Address</h2>
 
         <div class="wallet" id="wallet">
-            bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
+bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
 
-        <button onclick="copyWallet()">Copy Wallet Address</button>
+        <button onclick="copyWallet()">Copy Wallet</button>
         <button onclick="goToThankYou()">Done</button>
-
-        <p>Send BTC only. Double-check address before sending.</p>
     </div>
-
-    <div class="card contact">
-        <h2>Contact</h2>
-        <p>Telegram: @Ethervision35</p>
-    </div>
-
-    <footer>
-        © 2026 Investment Dashboard
-    </footer>
 
 </div>
+
+<footer>
+© 2026 Investment Dashboard
+</footer>
 
 <script>
 function copyWallet() {
     const wallet = document.getElementById("wallet").innerText;
-
     navigator.clipboard.writeText(wallet)
-        .then(() => {
-            alert("Wallet copied!");
-        })
-        .catch(err => {
-            alert("Copy failed. Try manually.");
-            console.log(err);
-        });
+        .then(() => alert("Wallet copied!"))
+        .catch(() => alert("Copy failed"));
 }
 
 function goToThankYou() {
@@ -186,48 +143,45 @@ function goToThankYou() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Payment Confirmation</title>
-
+<title>Payment Received</title>
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #0f172a;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        text-align: center;
-        padding: 20px;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
 
-    .box {
-        background: #1e293b;
-        padding: 30px;
-        border-radius: 12px;
-        max-width: 500px;
-    }
+.box {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 12px;
+    max-width: 500px;
+}
 
-    h1 {
-        color: #22c55e;
-        margin-bottom: 10px;
-    }
+h1 {
+    color: #22c55e;
+}
 
-    p {
-        color: #cbd5e1;
-        line-height: 1.6;
-    }
+p {
+    color: #cbd5e1;
+}
 </style>
 </head>
 
 <body>
 
 <div class="box">
-    <h1>✅ Payment Submitted</h1>
+    <h1>Payment Submitted</h1>
     <p>Thank you for your payment.</p>
     <p>We will notify you once we receive your payment.</p>
 </div>
 
 </body>
 </html>
+
