@@ -90,12 +90,14 @@
 
 <header>
     <h1>Investment Dashboard</h1>
-      <p>Track plans and payment details</p>
+    <p>Track plans and payment details</p>
+
     <img src="file_00000000a508720c8a70e1680c2add19.png"
-     alt="Benjamin Cowen"
+     alt="Header Image"
      width="220"
      style="display:block;margin:0 auto 15px auto;border-radius:50%;">
-    <h2>[Benjamin Cowen]</h2>
+
+    <h2>Benjamin Cowen</h2>
     <p>Bitcoin & Cryptocurrency Market Analyst</p>
     <p>Providing educational market analysis, trend insights, and portfolio-tracking guidance for cryptocurrency investors.</p>
 </header>
@@ -142,8 +144,10 @@
         </div>
 
         <button onclick="copyWallet()">Copy Wallet Address</button>
-   <button onclick="paymentSent()">Done</button>
-<p id="message"></p>
+        <button onclick="paymentSent()">Done</button>
+
+        <p id="message"></p>
+
         <p>Send BTC only. Double-check address before sending.</p>
     </div>
 
@@ -161,11 +165,20 @@
 <script>
 function copyWallet() {
     const wallet = document.getElementById("wallet").innerText;
-    navigator.clipboard.writeText(wallet);
-    alert("Wallet copied!");}
+
+    navigator.clipboard.writeText(wallet)
+        .then(() => {
+            alert("Wallet copied!");
+        })
+        .catch(err => {
+            alert("Copy failed. Try manually.");
+            console.log(err);
+        });
+}
+
 function paymentSent() {
-    document.getElementById("message").innerHTML =
-        "✅ Thanks for trusting us! Your payment notification has been "...received.";}
+    document.getElementById("message").innerText =
+        "✅ Thanks for trusting us! Your payment notification has been received.";
 }
 </script>
 
