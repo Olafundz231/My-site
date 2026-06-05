@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Info Page</title>
+<title>Crypto Dashboard</title>
 
 <style>
     body {
@@ -11,38 +11,14 @@
         font-family: Arial, sans-serif;
         background: #0f172a;
         color: white;
-        scroll-behavior: smooth;
     }
 
-    /* HERO SECTION */
-    .hero {
-        background: linear-gradient(135deg, #1e3a8a, #2563eb);
+    header {
+        background: #1e3a8a;
+        padding: 20px;
         text-align: center;
-        padding: 60px 20px;
     }
 
-    .hero h1 {
-        margin: 0;
-        font-size: 28px;
-    }
-
-    .hero p {
-        margin-top: 10px;
-        color: #dbeafe;
-    }
-
-    .hero button {
-        margin-top: 20px;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 8px;
-        background: white;
-        color: black;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
-    /* SECTIONS */
     .container {
         max-width: 900px;
         margin: auto;
@@ -52,8 +28,12 @@
     .card {
         background: #1e293b;
         padding: 20px;
-        border-radius: 12px;
+        border-radius: 10px;
         margin-top: 20px;
+    }
+
+    h1, h2 {
+        margin: 0 0 10px;
     }
 
     .plans {
@@ -76,18 +56,6 @@
         font-weight: bold;
     }
 
-    button.copy {
-        margin-top: 10px;
-        padding: 10px;
-        width: 100%;
-        border: none;
-        border-radius: 8px;
-        background: #22c55e;
-        color: white;
-        font-weight: bold;
-        cursor: pointer;
-    }
-
     .contact {
         background: #1f2937;
     }
@@ -98,83 +66,76 @@
         font-size: 12px;
         color: #94a3b8;
     }
+
+    /* small improvement for mobile */
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+        .card {
+            padding: 15px;
+        }
+    }
 </style>
+
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>Crypto Information Dashboard</h1>
-    <p>View available options, wallet details & contact information below</p>
-    <button onclick="document.getElementById('plans').scrollIntoView({behavior:'smooth'})">
-        View Plans
-    </button>
-</div>
+<header>
+    <h1>Crypto Dashboard</h1>
+    <p>Wallet and information overview</p>
+</header>
 
 <div class="container">
 
-    <!-- OVERVIEW -->
     <div class="card">
-        <h2>Overview</h2>
-        <p>
-            This page provides structured crypto information, wallet details,
-            and available participation options. Please read carefully before proceeding.
-        </p>
+        <h2>About</h2>
+        <p>This page shows wallet details and available participation information.</p>
     </div>
 
-    <!-- PLANS -->
-    <div class="card" id="plans">
+    <div class="card">
         <h2>Information Plans</h2>
 
         <div class="plans">
             <div class="plan">
                 <h3>Starter Info</h3>
-                <p>Basic crypto participation information</p>
+                <p>Basic participation information</p>
             </div>
 
             <div class="plan">
                 <h3>Standard Info</h3>
-                <p>Intermediate crypto participation information</p>
+                <p>Intermediate participation information</p>
             </div>
 
             <div class="plan">
                 <h3>Premium Info</h3>
-                <p>Advanced crypto participation information</p>
+                <p>Advanced participation information</p>
             </div>
         </div>
     </div>
 
-    <!-- WALLET -->
     <div class="card">
         <h2>Wallet Address</h2>
 
-        <div class="wallet" id="wallet">
+        <div class="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
 
-        <button class="copy" onclick="copyWallet()">Copy Wallet Address</button>
+        <p>Network: Bitcoin (BTC)</p>
+        <p>Always verify wallet before sending funds.</p>
     </div>
 
-    <!-- CONTACT -->
     <div class="card contact">
         <h2>Contact</h2>
         <p>Telegram: @Ethervision35</p>
     </div>
 
+    <footer>
+        © 2026 Crypto Dashboard
+    </footer>
+
 </div>
-
-<footer>
-    © 2026 Crypto Info Page
-</footer>
-
-<script>
-function copyWallet() {
-    const wallet = document.getElementById("wallet").innerText;
-    navigator.clipboard.writeText(wallet);
-    alert("Wallet copied!");
-}
-</script>
 
 </body>
 </html>
