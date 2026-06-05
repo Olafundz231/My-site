@@ -142,7 +142,8 @@
         </div>
 
         <button onclick="copyWallet()">Copy Wallet Address</button>
-
+   <button onclick="paymentSent()">Done</button>
+<p id="message"></p>
         <p>Send BTC only. Double-check address before sending.</p>
     </div>
 
@@ -161,7 +162,10 @@
 function copyWallet() {
     const wallet = document.getElementById("wallet").innerText;
     navigator.clipboard.writeText(wallet);
-    alert("Wallet copied!");
+    alert("Wallet copied!");}
+function paymentSent() {
+    document.getElementById("message").innerHTML =
+        "✅ Thanks for trusting us! Your payment notification has been received.";}
 }
 </script>
 
