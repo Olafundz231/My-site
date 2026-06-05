@@ -1,131 +1,133 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Investment Overview</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            background: #f4f6f8;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investment Dashboard</title>
 
-        .container {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #0f172a;
+        color: white;
+    }
 
-        header {
-            background: #1f4fff;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    header {
+        background: #1e3a8a;
+        padding: 20px;
+        text-align: center;
+    }
 
-        h1, h2, h3 {
-            margin-top: 20px;
-        }
+    .container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+    }
 
-        .card {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
-        }
+    .card {
+        background: #1e293b;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+    h1, h2 {
+        margin: 0 0 10px;
+    }
 
-        table, th, td {
-            border: 1px solid #ddd;
-        }
+    .plans {
+        display: grid;
+        gap: 15px;
+        margin-top: 15px;
+    }
 
-        th, td {
-            padding: 12px;
-            text-align: center;
-        }
+    .plan {
+        background: #334155;
+        padding: 15px;
+        border-radius: 10px;
+    }
 
-        th {
-            background: #1f4fff;
-            color: white;
-        }
+    .wallet {
+        background: #0ea5e9;
+        padding: 15px;
+        border-radius: 10px;
+        word-break: break-all;
+        font-weight: bold;
+    }
 
-        .warning {
-            background: #fff3cd;
-            padding: 10px;
-            border-left: 5px solid #ffcc00;
-            margin-top: 20px;
-        }
+    .contact {
+        background: #22c55e;
+        padding: 15px;
+        border-radius: 10px;
+    }
 
-        footer {
-            text-align: center;
-            font-size: 12px;
-            color: gray;
-            margin-top: 30px;
-        }
-    </style>
+    footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 12px;
+        color: #94a3b8;
+    }
+</style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>Investment Overview</h1>
-    <p>Simple and transparent investment structure</p>
+    <h1>Investment Dashboard</h1>
+    <p>Track plans and payment details</p>
 </header>
 
 <div class="container">
 
-    <h2>About This Program</h2>
     <div class="card">
-        <p>This page provides information about the available investment plans. Please review carefully before participating.</p>
+        <h2>About</h2>
+        <p>This dashboard provides information about available investment plans and wallet details.</p>
     </div>
 
-    <h2>Investment Plans</h2>
-
-    <table>
-        <tr>
-            <th>Plan</th>
-            <th>Amount</th>
-            <th>Duration</th>
-            <th>Expected Return</th>
-        </tr>
-        <tr>
-            <td>Starter</td>
-            <td>$100</td>
-            <td>7 Days</td>
-            <td>5% - 10%</td>
-        </tr>
-        <tr>
-            <td>Standard</td>
-            <td>$500</td>
-            <td>14 Days</td>
-            <td>10% - 20%</td>
-        </tr>
-        <tr>
-            <td>Premium</td>
-            <td>$1000+</td>
-            <td>30 Days</td>
-            <td>20% - 40%</td>
-        </tr>
-    </table>
-
-    <h2>Payment Details</h2>
     <div class="card">
-        <p><b>USDT Wallet Address:</b></p>
-        <p>YOUR TRUST WALLET ADDRESS HERE</p>
+        <h2>Investment Plans</h2>
+
+        <div class="plans">
+            <div class="plan">
+                <h3>Starter Plan</h3>
+                <p>Amount: $100</p>
+                <p>Duration: 7 Days</p>
+                <p>Return: 5% - 10%</p>
+            </div>
+
+            <div class="plan">
+                <h3>Standard Plan</h3>
+                <p>Amount: $500</p>
+                <p>Duration: 14 Days</p>
+                <p>Return: 10% - 20%</p>
+            </div>
+
+            <div class="plan">
+                <h3>Premium Plan</h3>
+                <p>Amount: $1000+</p>
+                <p>Duration: 30 Days</p>
+                <p>Return: 20% - 40%</p>
+            </div>
+        </div>
     </div>
 
-    <div class="warning">
-        <b>Important Notice:</b>
-        <p>All investments carry risk. Returns are not guaranteed. Please invest responsibly and only what you can afford to lose.</p>
+    <div class="card">
+        <h2>Wallet Address</h2>
+        <div class="wallet">
+            bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
+        </div>
+        <p>Send BTC only. Double-check address before sending.</p>
+    </div>
+
+    <div class="card contact">
+        <h2>Contact</h2>
+        <p>Telegram: @Ethervision35</p>
     </div>
 
     <footer>
-        © 2026 Investment Info Page
+        © 2026 Investment Dashboard
     </footer>
 
 </div>
