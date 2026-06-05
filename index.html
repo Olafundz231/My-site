@@ -19,6 +19,12 @@ header {
     text-align: center;
 }
 
+header img {
+    display: block;
+    margin: 15px auto;
+    border-radius: 50%;
+}
+
 .container {
     max-width: 900px;
     margin: auto;
@@ -82,11 +88,10 @@ footer {
     <h1>Investment Dashboard</h1>
     <p>Track plans and payment details</p>
 
-    <!-- HEADER IMAGE RESTORED -->
-    <img src="header.png"
+    <!-- FIXED IMAGE PATH -->
+    <img src="file_00000000a508720c8a70e1680c2add19.png"
      alt="Profile Image"
-     width="180"
-     style="display:block;margin:15px auto;border-radius:50%;">
+     width="180">
 
     <h2>Benjamin Cowen</h2>
     <p>Bitcoin & Cryptocurrency Market Analyst</p>
@@ -120,11 +125,18 @@ footer {
         <h2>Wallet Address</h2>
 
         <div class="wallet" id="wallet">
-bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
+            bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
 
         <button onclick="copyWallet()">Copy Wallet</button>
         <button onclick="goToThankYou()">Done</button>
+
+        <p>Send BTC only. Double-check address before sending.</p>
+    </div>
+
+    <div class="card">
+        <h2>Contact</h2>
+        <p>Telegram: @Ethervision35</p>
     </div>
 
 </div>
