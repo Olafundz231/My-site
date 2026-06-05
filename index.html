@@ -3,9 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Crypto Profile</title>
-
-<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+<title>Payment Dashboard</title>
 
 <style>
     body {
@@ -22,21 +20,32 @@
     }
 
     .container {
-        max-width: 850px;
+        max-width: 900px;
         margin: auto;
-        padding: 15px;
+        padding: 20px;
     }
 
     .card {
         background: #111827;
-        padding: 18px;
-        border-radius: 14px;
-        margin-top: 15px;
+        padding: 20px;
+        border-radius: 12px;
+        margin-top: 20px;
     }
 
-    .wallet {
+    .grid {
+        display: grid;
+        gap: 15px;
+    }
+
+    .plan {
+        background: #1f2937;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .wallet-box {
         background: #0ea5e9;
-        padding: 14px;
+        padding: 15px;
         border-radius: 10px;
         word-break: break-all;
         font-weight: bold;
@@ -45,50 +54,21 @@
     button {
         margin-top: 10px;
         padding: 10px;
-        width: 100%;
         border: none;
         border-radius: 8px;
+        cursor: pointer;
         background: #22c55e;
         color: white;
         font-weight: bold;
-        cursor: pointer;
-    }
-
-    button:hover {
-        background: #16a34a;
-    }
-
-    .plan {
-        background: #1f2937;
-        padding: 12px;
-        border-radius: 10px;
-        margin-top: 10px;
     }
 
     .contact {
         background: #1f2937;
     }
 
-    #qrcode {
-        margin-top: 15px;
-        background: white;
-        padding: 10px;
-        display: inline-block;
-        border-radius: 10px;
-    }
-
-    .note {
-        background: #7f1d1d;
-        padding: 10px;
-        border-radius: 8px;
-        margin-top: 10px;
-        color: #fecaca;
-        font-size: 13px;
-    }
-
     footer {
         text-align: center;
-        margin-top: 20px;
+        margin-top: 30px;
         font-size: 12px;
         color: #94a3b8;
     }
@@ -98,70 +78,61 @@
 <body>
 
 <header>
-    <h1>Crypto Profile</h1>
-    <p>Wallet & Information Page</p>
+    <h1>Crypto Payment Dashboard</h1>
+    <p>Wallet information and contact details</p>
 </header>
 
 <div class="container">
 
-    <!-- Wallet -->
     <div class="card">
-        <h2>Bitcoin Wallet</h2>
+        <h2>About</h2>
+        <p>This page shows wallet details for crypto payments and contact support information.</p>
+    </div>
 
-        <div class="wallet" id="wallet">
+    <div class="card">
+        <h2>Wallet Address (BTC)</h2>
+
+        <div class="wallet-box" id="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
 
-        <button onclick="copyWallet()">Copy Wallet</button>
-
-        <div id="qrcode"></div>
+        <button onclick="copyWallet()">Copy Wallet Address</button>
     </div>
 
-    <!-- Plans (INFO ONLY) -->
     <div class="card">
-        <h2>Information Plans</h2>
+        <h2>Information</h2>
+        <div class="grid">
 
-        <div class="plan">
-            <h3>Starter Info</h3>
-            <p>Basic entry information for crypto participation.</p>
-        </div>
+            <div class="plan">
+                <h3>Note</h3>
+                <p>Always verify wallet address before sending funds.</p>
+            </div>
 
-        <div class="plan">
-            <h3>Standard Info</h3>
-            <p>Medium-level participation information.</p>
-        </div>
+            <div class="plan">
+                <h3>Network</h3>
+                <p>Bitcoin (BTC)</p>
+            </div>
 
-        <div class="plan">
-            <h3>Premium Info</h3>
-            <p>Advanced-level participation information.</p>
-        </div>
-
-        <div class="note">
-            ⚠️ Always verify wallet address before sending crypto. Transactions are irreversible.
         </div>
     </div>
 
-    <!-- Contact -->
     <div class="card contact">
         <h2>Contact</h2>
         <p>Telegram: @Ethervision35</p>
     </div>
 
-</div>
+    <footer>
+        © 2026 Crypto Payment Info Page
+    </footer>
 
-<footer>
-    © 2026 Crypto Profile Page
-</footer>
+</div>
 
 <script>
 function copyWallet() {
-    const wallet = document.getElementById("wallet").innerText;
-    navigator.clipboard.writeText(wallet);
+    const text = document.getElementById("wallet").innerText;
+    navigator.clipboard.writeText(text);
     alert("Wallet copied!");
 }
-
-const wallet = document.getElementById("wallet").innerText;
-QRCode.toCanvas(document.getElementById("qrcode"), wallet);
 </script>
 
 </body>
