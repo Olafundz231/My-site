@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Investment Dashboard</title>
+<title>Crypto Payment Info</title>
 
 <style>
     body {
         margin: 0;
         font-family: Arial, sans-serif;
-        background: #0f172a;
+        background: #0b1220;
         color: white;
     }
 
     header {
-        background: #1e3a8a;
+        background: #1d4ed8;
         padding: 20px;
         text-align: center;
     }
@@ -26,26 +26,10 @@
     }
 
     .card {
-        background: #1e293b;
+        background: #111827;
         padding: 20px;
-        border-radius: 10px;
+        border-radius: 12px;
         margin-top: 20px;
-    }
-
-    h1, h2 {
-        margin: 0 0 10px;
-    }
-
-    .plans {
-        display: grid;
-        gap: 15px;
-        margin-top: 15px;
-    }
-
-    .plan {
-        background: #334155;
-        padding: 15px;
-        border-radius: 10px;
     }
 
     .wallet {
@@ -56,10 +40,27 @@
         font-weight: bold;
     }
 
-    .contact {
+    button {
+        margin-top: 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
         background: #22c55e;
+        color: white;
+        font-weight: bold;
+    }
+
+    .contact {
+        background: #1f2937;
+    }
+
+    .warning {
+        background: #7f1d1d;
         padding: 15px;
         border-radius: 10px;
+        margin-top: 15px;
+        color: #fecaca;
     }
 
     footer {
@@ -69,56 +70,25 @@
         color: #94a3b8;
     }
 </style>
-
 </head>
 
 <body>
 
 <header>
-    <h1>Investment Dashboard</h1>
-    <p>Track plans and payment details</p>
+    <h1>Crypto Payment Info</h1>
+    <p>Wallet details and contact</p>
 </header>
 
 <div class="container">
 
     <div class="card">
-        <h2>About</h2>
-        <p>This dashboard provides information about available investment plans and wallet details.</p>
-    </div>
+        <h2>Wallet Address (BTC)</h2>
 
-    <div class="card">
-        <h2>Investment Plans</h2>
-
-        <div class="plans">
-            <div class="plan">
-                <h3>Starter Plan</h3>
-                <p>Amount: $100</p>
-                <p>Duration: 7 Days</p>
-                <p>Return: 5% - 10%</p>
-            </div>
-
-            <div class="plan">
-                <h3>Standard Plan</h3>
-                <p>Amount: $500</p>
-                <p>Duration: 14 Days</p>
-                <p>Return: 10% - 20%</p>
-            </div>
-
-            <div class="plan">
-                <h3>Premium Plan</h3>
-                <p>Amount: $1000+</p>
-                <p>Duration: 30 Days</p>
-                <p>Return: 20% - 40%</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="card">
-        <h2>Wallet Address</h2>
-        <div class="wallet">
+        <div class="wallet" id="wallet">
             bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
         </div>
-        <p>Send BTC only. Double-check address before sending.</p>
+
+        <button onclick="copyWallet()">Copy Wallet</button>
     </div>
 
     <div class="card contact">
@@ -126,11 +96,28 @@
         <p>Telegram: @Ethervision35</p>
     </div>
 
+    <div class="card">
+        <h2>Notice</h2>
+
+        <div class="warning">
+            Always double-check wallet addresses before sending any crypto.
+            Transactions on blockchain are irreversible.
+        </div>
+    </div>
+
     <footer>
-        © 2026 Investment Dashboard
+        © 2026 Crypto Info Page
     </footer>
 
 </div>
+
+<script>
+function copyWallet() {
+    const text = document.getElementById("wallet").innerText;
+    navigator.clipboard.writeText(text);
+    alert("Wallet copied!");
+}
+</script>
 
 </body>
 </html>
