@@ -18,6 +18,7 @@ header {
     background: linear-gradient(135deg, #1e3a8a, #0f172a);
     padding: 25px 15px;
     text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 header img {
@@ -38,6 +39,7 @@ header img {
 .card {
     background: rgba(255,255,255,0.05);
     border: 1px solid rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 16px;
     margin-top: 18px;
@@ -74,6 +76,7 @@ header img {
     border: 1px solid rgba(14,165,233,0.3);
     padding: 14px;
     border-radius: 12px;
+    word-break: break-all;
 }
 
 /* BUTTON */
@@ -133,7 +136,7 @@ footer {
     display: none;
 }
 
-/* MODAL */
+/* ✅ FULL SCREEN MODAL (NEW) */
 #successModal {
     display: none;
     position: fixed;
@@ -150,20 +153,21 @@ footer {
     border: 1px solid rgba(34,197,94,0.4);
     padding: 25px;
     border-radius: 18px;
+    max-width: 320px;
 }
 
-/* FLOATING CHANGE EFFECT */
-.glow {
-    transition: all 0.3s ease;
+.modal-box h2 {
     color: #22c55e;
+}
+
+.small {
+    font-size: 13px;
+    color: #94a3b8;
 }
 </style>
 </head>
 
 <body>
-
-<!-- SOUND -->
-<audio id="notifySound" src="notify.mp3" preload="auto"></audio>
 
 <!-- LOADING -->
 <div id="loadingOverlay">
@@ -178,7 +182,8 @@ footer {
 <div id="successModal">
     <div class="modal-box">
         <h2>✓ Deposit Confirmed</h2>
-        <p>We will notify you once we receive your payment.</p>
+        <p class="small">Your transaction has been submitted successfully.</p>
+        <p class="small">We will notify you once we receive your payment.</p>
     </div>
 </div>
 
@@ -189,20 +194,17 @@ footer {
     <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
+    <p>Bitcoin & Crypto Analyst</p>
 </header>
 
 <div class="container">
 
     <div class="card">
         <h2>Portfolio</h2>
-
         <div class="portfolio-grid">
             <div class="port-box">
                 <p class="port-title">Total Value</p>
-                <h3 class="port-value">
-                    $<span id="portfolioValue">12850</span>
-                    <span class="green">+<span id="portfolioPercent">12.4</span>%</span>
-                </h3>
+                <h3 class="port-value">$12,850 <span class="green">+12.4%</span></h3>
             </div>
         </div>
     </div>
@@ -225,46 +227,13 @@ footer {
 <footer>© 2026 Investment Dashboard</footer>
 
 <script>
-/* COPY */
 function copyWallet() {
-    navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+    navigator.clipboard.writeText(
+        document.getElementById("wallet").innerText
+    );
     showToast("Wallet copied");
 }
 
-/* TOAST */
-function showToast(msg) {
-    const toast = document.getElementById("toast");
-    toast.innerText = "🔔 " + msg;
-    toast.style.display = "block";
-    setTimeout(() => toast.style.display = "none", 3000);
-}
-
-/* PORTFOLIO ANIMATION */
-function animatePortfolio() {
-    let value = 12000;
-    let percent = 10;
-
-    const v = setInterval(() => {
-        value += 40;
-        document.getElementById("portfolioValue").innerText = value;
-        if (value >= 12850) clearInterval(v);
-    }, 30);
-
-    const p = setInterval(() => {
-        percent += 0.05;
-        document.getElementById("portfolioPercent").innerText = percent.toFixed(1);
-        if (percent >= 12.4) clearInterval(p);
-    }, 40);
-}
-
-/* SOUND */
-function playSound() {
-    const audio = document.getElementById("notifySound");
-    audio.currentTime = 0;
-    audio.play();
-}
-
-/* MAIN FLOW */
 function goToThankYou(btn) {
     btn.disabled = true;
     btn.innerText = "Processing...";
@@ -275,14 +244,21 @@ function goToThankYou(btn) {
         document.getElementById("loadingOverlay").style.display = "none";
         document.getElementById("successModal").style.display = "flex";
 
-        playSound();
-        animatePortfolio();
-
         setTimeout(() => {
             window.location.href = "thankyou.html";
         }, 2500);
 
     }, 2000);
+}
+
+function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.innerText = "🔔 " + msg;
+    toast.style.display = "block";
+
+    setTimeout(() => {
+        toast.style.display = "none";
+    }, 3000);
 }
 </script>
 
