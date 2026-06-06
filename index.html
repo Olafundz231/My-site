@@ -25,12 +25,14 @@ header img {
     border-radius: 50%;
 }
 
+/* CONTAINER */
 .container {
     max-width: 900px;
     margin: auto;
     padding: 20px;
 }
 
+/* CARDS */
 .card {
     background: #1e293b;
     padding: 20px;
@@ -38,6 +40,7 @@ header img {
     margin-top: 20px;
 }
 
+/* GRID */
 .plans {
     display: grid;
     gap: 15px;
@@ -49,6 +52,7 @@ header img {
     border-radius: 10px;
 }
 
+/* WALLET */
 .wallet {
     background: #0ea5e9;
     padding: 15px;
@@ -57,6 +61,7 @@ header img {
     font-weight: bold;
 }
 
+/* BUTTON */
 button {
     margin-top: 10px;
     padding: 10px;
@@ -69,10 +74,7 @@ button {
     width: 100%;
 }
 
-button:hover {
-    background: #16a34a;
-}
-
+/* FOOTER */
 footer {
     text-align: center;
     margin-top: 30px;
@@ -80,20 +82,48 @@ footer {
     color: #94a3b8;
 }
 
-/* LOADING OVERLAY */
-#loadingOverlay {
+/* POPUP */
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(34,197,94,0.95);
+    padding: 14px;
+    border-radius: 10px;
+    display: none;
+    z-index: 9999;
+    font-weight: bold;
+}
+
+/* FULL SCREEN MODAL */
+#modal {
     display: none;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    z-index: 10000;
+}
+
+.modal-box {
+    background: #1e293b;
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid #22c55e;
+}
+
+/* SPINNER */
+#loading {
+    display: none;
+    position: fixed;
+    inset: 0;
     background: rgba(0,0,0,0.85);
     justify-content: center;
     align-items: center;
     flex-direction: column;
     z-index: 9999;
-    color: white;
 }
 
 .spinner {
@@ -103,11 +133,9 @@ footer {
     border-top: 4px solid #22c55e;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 15px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 </style>
@@ -115,91 +143,124 @@ footer {
 
 <body>
 
-<!-- LOADING SCREEN -->
-<div id="loadingOverlay">
+<div id="loading">
     <div class="spinner"></div>
-    <h3>Processing transaction...</h3>
+    <h3>Processing...</h3>
+</div>
+
+<div id="toast"></div>
+
+<div id="modal">
+    <div class="modal-box">
+        <h2>✅ New Deposit Confirmed</h2>
+        <p>Your transaction has been received successfully.</p>
+    </div>
 </div>
 
 <header>
     <h1>Investment Dashboard</h1>
-    <p>Track plans and payment details</p>
+    <p>Track plans and payments</p>
 
-    <img src="file_00000000a508720c8a70e1680c2add19.png"
-     alt="Profile Image"
-     width="180">
+    <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
-    <p>Bitcoin & Cryptocurrency Market Analyst</p>
-    <p>Providing educational market analysis, trend insights, and portfolio-tracking guidance for cryptocurrency investors.</p>
+    <p>Crypto Market Analyst</p>
 </header>
 
 <div class="container">
 
-    <div class="card">
-        <h2>Investment Plans</h2>
+<!-- PORTFOLIO -->
+<div class="card">
+    <h2>Portfolio Dashboard</h2>
 
-        <div class="plans">
-            <div class="plan">
-                <h3>Starter Plan</h3>
-                <p>$100 - 7 Days</p>
-            </div>
+    <h3 id="portfolio">$12,850.00 <span style="color:#22c55e;">+12.4%</span></h3>
+</div>
 
-            <div class="plan">
-                <h3>Standard Plan</h3>
-                <p>$500 - 14 Days</p>
-            </div>
+<!-- TRANSACTIONS -->
+<div class="card">
+    <h2>Recent Transactions</h2>
 
-            <div class="plan">
-                <h3>Premium Plan</h3>
-                <p>$1000+ - 30 Days</p>
-            </div>
-        </div>
+    <div class="plans">
+        <div class="plan">BTC Deposit +$2,500</div>
+        <div class="plan">Investment -$500</div>
+        <div class="plan">Referral +$150</div>
+    </div>
+</div>
+
+<!-- PLANS -->
+<div class="card">
+    <h2>Investment Plans</h2>
+
+    <div class="plans">
+        <div class="plan">Starter $100 - 7 Days</div>
+        <div class="plan">Standard $500 - 14 Days</div>
+        <div class="plan">Premium $1000+ - 30 Days</div>
+    </div>
+</div>
+
+<!-- WALLET -->
+<div class="card">
+    <h2>Wallet Address</h2>
+
+    <div class="wallet" id="wallet">
+        bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
     </div>
 
-    <div class="card">
-        <h2>Wallet Address</h2>
-
-        <div class="wallet" id="wallet">
-            bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
-        </div>
-
-        <button onclick="copyWallet()">Copy Wallet</button>
-        <button onclick="goToThankYou(this)">Done</button>
-
-        <p>Send BTC only. Double-check address before sending.</p>
-    </div>
-
-    <div class="card">
-        <h2>Contact</h2>
-        <p>Telegram: @Ethervision35</p>
-    </div>
+    <button onclick="simulateDeposit()">Simulate Deposit</button>
+</div>
 
 </div>
 
-<footer>
-© 2026 Investment Dashboard
-</footer>
+<footer>© 2026 Investment Dashboard</footer>
 
 <script>
-function copyWallet() {
-    const wallet = document.getElementById("wallet").innerText;
 
-    navigator.clipboard.writeText(wallet)
-        .then(() => alert("Wallet copied!"))
-        .catch(() => alert("Copy failed"));
+let portfolioValue = 12850;
+
+/* AUTO GROW PORTFOLIO */
+setInterval(() => {
+    portfolioValue += Math.floor(Math.random() * 80);
+    document.getElementById("portfolio").innerHTML =
+        "$" + portfolioValue.toLocaleString() +
+        ' <span style="color:#22c55e;">+12.4%</span>';
+}, 5000);
+
+/* SOUND */
+function playSound() {
+    const audio = new Audio("https://actions.google.com/sounds/v1/cash_register/cash_register_ping.ogg");
+    audio.play();
 }
 
-function goToThankYou(btn) {
-    btn.disabled = true;
-    btn.innerText = "Processing...";
+/* TOAST */
+function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.innerText = msg;
+    t.style.display = "block";
+    setTimeout(() => t.style.display = "none", 4000);
+}
 
-    document.getElementById("loadingOverlay").style.display = "flex";
+/* FULL SCREEN POPUP + SOUND */
+function simulateDeposit() {
+
+    document.getElementById("loading").style.display = "flex";
 
     setTimeout(() => {
-        window.location.href = "thankyou.html";
-    }, 2500);
+
+        document.getElementById("loading").style.display = "none";
+
+        document.getElementById("modal").style.display = "flex";
+
+        showToast("New deposit confirmed +$1,200");
+
+        playSound();
+
+        setTimeout(() => {
+            document.getElementById("modal").style.display = "none";
+        }, 3000);
+
+    }, 2000);
 }
+
 </script>
 
 </body>
