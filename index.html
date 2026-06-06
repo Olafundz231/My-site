@@ -9,20 +9,33 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0f172a;
+    background: radial-gradient(circle at top, #0f172a, #0b1220);
     color: white;
 }
 
+/* HEADER (RESTORED PRO LOOK) */
 header {
-    background: #1e3a8a;
-    padding: 20px;
+    background: linear-gradient(135deg, #1e3a8a, #0f172a);
+    padding: 25px 15px;
     text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 header img {
     display: block;
     margin: 15px auto;
     border-radius: 50%;
+    border: 3px solid rgba(34,197,94,0.4);
+    box-shadow: 0 0 18px rgba(34,197,94,0.15);
+}
+
+header h2 {
+    margin: 10px 0 5px;
+}
+
+header p {
+    margin: 4px 0;
+    color: #94a3b8;
 }
 
 /* CONTAINER */
@@ -34,22 +47,30 @@ header img {
 
 /* CARDS */
 .card {
-    background: #1e293b;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 14px;
     margin-top: 20px;
+    backdrop-filter: blur(10px);
 }
 
-/* GRID */
-.plans {
-    display: grid;
-    gap: 15px;
+/* PORTFOLIO */
+.portfolio-value {
+    font-size: 26px;
+    margin: 0;
 }
 
+.green {
+    color: #22c55e;
+}
+
+/* PLAN */
 .plan {
-    background: #334155;
+    background: rgba(255,255,255,0.06);
     padding: 15px;
     border-radius: 10px;
+    margin-top: 10px;
 }
 
 /* WALLET */
@@ -64,7 +85,7 @@ header img {
 /* BUTTON */
 button {
     margin-top: 10px;
-    padding: 10px;
+    padding: 12px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -72,14 +93,6 @@ button {
     color: white;
     font-weight: bold;
     width: 100%;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    margin-top: 30px;
-    font-size: 12px;
-    color: #94a3b8;
 }
 
 /* TOAST */
@@ -92,7 +105,6 @@ footer {
     border-radius: 10px;
     display: none;
     z-index: 9999;
-    font-weight: bold;
 }
 
 /* MODAL */
@@ -103,7 +115,6 @@ footer {
     background: rgba(0,0,0,0.92);
     justify-content: center;
     align-items: center;
-    text-align: center;
     z-index: 10000;
 }
 
@@ -112,6 +123,7 @@ footer {
     padding: 25px;
     border-radius: 15px;
     border: 1px solid #22c55e;
+    text-align: center;
 }
 
 /* LOADING */
@@ -165,6 +177,7 @@ footer {
 
     <h2>Benjamin Cowen</h2>
     <p>Crypto Market Analyst</p>
+    <p>Market insights, portfolio tracking & analytics</p>
 </header>
 
 <div class="container">
@@ -174,30 +187,17 @@ footer {
     <h2>Portfolio Dashboard</h2>
 
     <h3 id="portfolio">
-        $12,850.00 <span id="percent" style="color:#22c55e;">+0.00%</span>
+        $12,850.00 <span class="green">+12.4%</span>
     </h3>
-</div>
-
-<!-- TRANSACTIONS -->
-<div class="card">
-    <h2>Recent Transactions</h2>
-
-    <div class="plans">
-        <div class="plan">BTC Deposit +$2,500</div>
-        <div class="plan">Investment -$500</div>
-        <div class="plan">Referral +$150</div>
-    </div>
 </div>
 
 <!-- PLANS -->
 <div class="card">
     <h2>Investment Plans</h2>
 
-    <div class="plans">
-        <div class="plan">Starter $100 - 7 Days</div>
-        <div class="plan">Standard $500 - 14 Days</div>
-        <div class="plan">Premium $1000+ - 30 Days</div>
-    </div>
+    <div class="plan">Starter $100 - 7 Days</div>
+    <div class="plan">Standard $500 - 14 Days</div>
+    <div class="plan">Premium $1000+ - 30 Days</div>
 </div>
 
 <!-- WALLET -->
@@ -224,21 +224,16 @@ footer {
 
 <script>
 
-let portfolioValue = 12850;
-let baseValue = 12850;
+let portfolio = 12850;
 
-/* AUTO GROW PORTFOLIO + % FIX */
+/* AUTO GROW + ANIMATION */
 setInterval(() => {
-
-    portfolioValue += Math.floor(Math.random() * 70);
-
-    let percent = (((portfolioValue - baseValue) / baseValue) * 100).toFixed(2);
+    portfolio += Math.floor(Math.random() * 80);
 
     document.getElementById("portfolio").innerHTML =
-        "$" + portfolioValue.toLocaleString() +
-        ` <span id="percent" style="color:#22c55e;">+${percent}%</span>`;
-
-}, 5000);
+        "$" + portfolio.toLocaleString() +
+        ' <span class="green">+12.4%</span>';
+}, 4000);
 
 /* SOUND */
 function playSound() {
@@ -251,16 +246,16 @@ function showToast(msg) {
     const t = document.getElementById("toast");
     t.innerText = msg;
     t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 4000);
+    setTimeout(() => t.style.display = "none", 3000);
 }
 
-/* COPY WALLET */
+/* COPY */
 function copyWallet() {
     navigator.clipboard.writeText(document.getElementById("wallet").innerText);
     showToast("Wallet copied!");
 }
 
-/* DONE BUTTON */
+/* DONE */
 function goToThankYou(btn) {
     btn.disabled = true;
     btn.innerText = "Processing...";
