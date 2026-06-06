@@ -9,16 +9,15 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: radial-gradient(circle at top, #0f172a, #0b1220);
+    background: #0f172a;
     color: white;
 }
 
-/* HEADER (RESTORED PRO LOOK) */
+/* HEADER (RESTORED WITHOUT CHANGING YOUR STRUCTURE) */
 header {
     background: linear-gradient(135deg, #1e3a8a, #0f172a);
-    padding: 25px 15px;
+    padding: 20px;
     text-align: center;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
 header img {
@@ -27,15 +26,6 @@ header img {
     border-radius: 50%;
     border: 3px solid rgba(34,197,94,0.4);
     box-shadow: 0 0 18px rgba(34,197,94,0.15);
-}
-
-header h2 {
-    margin: 10px 0 5px;
-}
-
-header p {
-    margin: 4px 0;
-    color: #94a3b8;
 }
 
 /* CONTAINER */
@@ -47,30 +37,22 @@ header p {
 
 /* CARDS */
 .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
+    background: #1e293b;
     padding: 20px;
-    border-radius: 14px;
+    border-radius: 10px;
     margin-top: 20px;
-    backdrop-filter: blur(10px);
 }
 
-/* PORTFOLIO */
-.portfolio-value {
-    font-size: 26px;
-    margin: 0;
+/* GRID */
+.plans {
+    display: grid;
+    gap: 15px;
 }
 
-.green {
-    color: #22c55e;
-}
-
-/* PLAN */
 .plan {
-    background: rgba(255,255,255,0.06);
+    background: #334155;
     padding: 15px;
     border-radius: 10px;
-    margin-top: 10px;
 }
 
 /* WALLET */
@@ -85,7 +67,7 @@ header p {
 /* BUTTON */
 button {
     margin-top: 10px;
-    padding: 12px;
+    padding: 10px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
@@ -93,6 +75,14 @@ button {
     color: white;
     font-weight: bold;
     width: 100%;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 12px;
+    color: #94a3b8;
 }
 
 /* TOAST */
@@ -115,6 +105,7 @@ button {
     background: rgba(0,0,0,0.92);
     justify-content: center;
     align-items: center;
+    text-align: center;
     z-index: 10000;
 }
 
@@ -123,7 +114,6 @@ button {
     padding: 25px;
     border-radius: 15px;
     border: 1px solid #22c55e;
-    text-align: center;
 }
 
 /* LOADING */
@@ -155,13 +145,16 @@ button {
 
 <body>
 
+<!-- LOADING -->
 <div id="loading">
     <div class="spinner"></div>
     <h3>Processing...</h3>
 </div>
 
+<!-- TOAST -->
 <div id="toast"></div>
 
+<!-- MODAL -->
 <div id="modal">
     <div class="modal-box">
         <h2>✅ Deposit Confirmed</h2>
@@ -171,13 +164,12 @@ button {
 
 <header>
     <h1>Investment Dashboard</h1>
-    <p>Track plans and payments</p>
+    <p>Track plans and payment details</p>
 
     <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
     <p>Crypto Market Analyst</p>
-    <p>Market insights, portfolio tracking & analytics</p>
 </header>
 
 <div class="container">
@@ -186,18 +178,31 @@ button {
 <div class="card">
     <h2>Portfolio Dashboard</h2>
 
-    <h3 id="portfolio">
-        $12,850.00 <span class="green">+12.4%</span>
+    <h3 id="portfolioValue">
+        $12,850.00 <span style="color:#22c55e;">+12.4%</span>
     </h3>
+</div>
+
+<!-- TRANSACTIONS -->
+<div class="card">
+    <h2>Recent Transactions</h2>
+
+    <div class="plans">
+        <div class="plan">BTC Deposit +$2,500</div>
+        <div class="plan">Investment -$500</div>
+        <div class="plan">Referral +$150</div>
+    </div>
 </div>
 
 <!-- PLANS -->
 <div class="card">
     <h2>Investment Plans</h2>
 
-    <div class="plan">Starter $100 - 7 Days</div>
-    <div class="plan">Standard $500 - 14 Days</div>
-    <div class="plan">Premium $1000+ - 30 Days</div>
+    <div class="plans">
+        <div class="plan">Starter $100 - 7 Days</div>
+        <div class="plan">Standard $500 - 14 Days</div>
+        <div class="plan">Premium $1000+ - 30 Days</div>
+    </div>
 </div>
 
 <!-- WALLET -->
@@ -212,7 +217,7 @@ button {
     <button onclick="goToThankYou(this)">Done</button>
 </div>
 
-<!-- CONTACT -->
+<!-- CONTACT (RESTORED EXACTLY) -->
 <div class="card">
     <h2>Contact</h2>
     <p>Telegram: @Ethervision35</p>
@@ -226,19 +231,21 @@ button {
 
 let portfolio = 12850;
 
-/* AUTO GROW + ANIMATION */
+/* SMOOTH AUTO GROW (FIXED + CLEAN) */
 setInterval(() => {
-    portfolio += Math.floor(Math.random() * 80);
+    let increase = Math.floor(Math.random() * 60) + 10;
+    portfolio += increase;
 
-    document.getElementById("portfolio").innerHTML =
+    document.getElementById("portfolioValue").innerHTML =
         "$" + portfolio.toLocaleString() +
-        ' <span class="green">+12.4%</span>';
+        ' <span style="color:#22c55e;">+12.4%</span>';
 }, 4000);
 
-/* SOUND */
+/* SOUND (SAFE - only triggers on user action) */
 function playSound() {
     const audio = new Audio("https://actions.google.com/sounds/v1/cash_register/cash_register_ping.ogg");
-    audio.play();
+    audio.volume = 0.5;
+    audio.play().catch(() => {});
 }
 
 /* TOAST */
@@ -249,7 +256,7 @@ function showToast(msg) {
     setTimeout(() => t.style.display = "none", 3000);
 }
 
-/* COPY */
+/* COPY WALLET */
 function copyWallet() {
     navigator.clipboard.writeText(document.getElementById("wallet").innerText);
     showToast("Wallet copied!");
@@ -267,7 +274,7 @@ function goToThankYou(btn) {
         document.getElementById("modal").style.display = "flex";
 
         playSound();
-        showToast("Deposit confirmed +$1,200");
+        showToast("Deposit confirmed");
 
         setTimeout(() => {
             window.location.href = "thankyou.html";
