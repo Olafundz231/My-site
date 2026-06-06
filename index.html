@@ -13,9 +13,8 @@ body {
     color: white;
 }
 
-/* HEADER (SAFE FIX) */
 header {
-    background: linear-gradient(135deg, #1e3a8a, #0f172a);
+    background: #1e3a8a;
     padding: 20px;
     text-align: center;
 }
@@ -24,20 +23,6 @@ header img {
     display: block;
     margin: 15px auto;
     border-radius: 50%;
-    border: 3px solid rgba(34,197,94,0.4);
-    box-shadow: 0 0 18px rgba(34,197,94,0.15);
-}
-
-/* FIX: ensure header text spacing */
-header h2 {
-    margin: 10px 0 5px;
-}
-
-header p {
-    margin: 4px auto;
-    max-width: 650px;
-    color: #94a3b8;
-    line-height: 1.5;
 }
 
 /* CONTAINER */
@@ -55,7 +40,7 @@ header p {
     margin-top: 20px;
 }
 
-/* GRID */
+/* PLANS */
 .plans {
     display: grid;
     gap: 15px;
@@ -67,15 +52,29 @@ header p {
     border-radius: 10px;
 }
 
-/* WALLET (FORCE VISIBILITY FIX) */
+/* PLAN TITLE + ROI */
+.plan h3 {
+    margin: 0 0 5px 0;
+}
+
+.plan p {
+    margin: 0;
+    color: #cbd5e1;
+}
+
+.roi {
+    margin-top: 6px;
+    color: #22c55e;
+    font-weight: bold;
+}
+
+/* WALLET */
 .wallet {
     background: #0ea5e9;
     padding: 15px;
     border-radius: 10px;
     word-break: break-all;
     font-weight: bold;
-    color: #fff;
-    display: block;
 }
 
 /* BUTTON */
@@ -91,10 +90,6 @@ button {
     width: 100%;
 }
 
-button:hover {
-    background: #16a34a;
-}
-
 /* FOOTER */
 footer {
     text-align: center;
@@ -102,125 +97,47 @@ footer {
     font-size: 12px;
     color: #94a3b8;
 }
-
-/* TOAST */
-#toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #22c55e;
-    padding: 12px;
-    border-radius: 10px;
-    display: none;
-    z-index: 9999;
-}
-
-/* MODAL */
-#modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.92);
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    z-index: 10000;
-}
-
-.modal-box {
-    background: #1e293b;
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid #22c55e;
-}
-
-/* LOADING */
-#loading {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    z-index: 9999;
-}
-
-.spinner {
-    width: 45px;
-    height: 45px;
-    border: 4px solid #fff;
-    border-top: 4px solid #22c55e;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    100% { transform: rotate(360deg); }
-}
 </style>
 </head>
 
 <body>
 
-<div id="loading">
-    <div class="spinner"></div>
-    <h3>Processing...</h3>
-</div>
-
-<div id="toast"></div>
-
-<div id="modal">
-    <div class="modal-box">
-        <h2>✅ Deposit Confirmed</h2>
-        <p>Your transaction has been received successfully.</p>
-    </div>
-</div>
-
 <header>
     <h1>Investment Dashboard</h1>
-    <p>Track plans and payment details</p>
+    <p>Track plans and payments</p>
 
     <img src="file_00000000a508720c8a70e1680c2add19.png" width="160">
 
     <h2>Benjamin Cowen</h2>
     <p>Crypto Market Analyst</p>
-
-    <p>
-        I specialize in cryptocurrency market analysis with a focus on bitcoin trends, market behavior, and portfolio performance tracking.
-    </p>
 </header>
 
 <div class="container">
-
-<!-- PORTFOLIO -->
-<div class="card">
-    <h2>Portfolio Dashboard</h2>
-
-    <h3 id="portfolioValue">
-        $12,850.00 <span style="color:#22c55e;">+12.4%</span>
-    </h3>
-</div>
-
-<!-- TRANSACTIONS -->
-<div class="card">
-    <h2>Recent Transactions</h2>
-
-    <div class="plans">
-        <div class="plan">BTC Deposit +$2,500</div>
-        <div class="plan">Investment -$500</div>
-        <div class="plan">Referral +$150</div>
-    </div>
-</div>
 
 <!-- PLANS -->
 <div class="card">
     <h2>Investment Plans</h2>
 
     <div class="plans">
-        <div class="plan">Starter $100 - 7 Days</div>
-        <div class="plan">Standard $500 - 14 Days</div>
-        <div class="plan">Premium $1000+ - 30 Days</div>
+
+        <div class="plan">
+            <h3>Starter Plan</h3>
+            <p>$100 - 7 Days</p>
+            <div class="roi">+5% Profit</div>
+        </div>
+
+        <div class="plan">
+            <h3>Standard Plan</h3>
+            <p>$500 - 14 Days</p>
+            <div class="roi">+12% Profit</div>
+        </div>
+
+        <div class="plan">
+            <h3>Premium Plan</h3>
+            <p>$1000+ - 30 Days</p>
+            <div class="roi">+25% Profit</div>
+        </div>
+
     </div>
 </div>
 
@@ -233,7 +150,6 @@ footer {
     </div>
 
     <button onclick="copyWallet()">Copy Wallet</button>
-    <button onclick="goToThankYou(this)">Done</button>
 </div>
 
 <!-- CONTACT -->
@@ -247,49 +163,12 @@ footer {
 <footer>© 2026 Investment Dashboard</footer>
 
 <script>
-
-let portfolio = 12850;
-
-/* AUTO GROW */
-setInterval(() => {
-    portfolio += Math.floor(Math.random() * 60);
-
-    document.getElementById("portfolioValue").innerHTML =
-        "$" + portfolio.toLocaleString() +
-        ' <span style="color:#22c55e;">+12.4%</span>';
-}, 4000);
-
-function showToast(msg) {
-    const t = document.getElementById("toast");
-    t.innerText = msg;
-    t.style.display = "block";
-    setTimeout(() => t.style.display = "none", 3000);
-}
-
 function copyWallet() {
-    navigator.clipboard.writeText(document.getElementById("wallet").innerText);
-    showToast("Wallet copied!");
+    navigator.clipboard.writeText(
+        document.getElementById("wallet").innerText
+    );
+    alert("Wallet copied!");
 }
-
-function goToThankYou(btn) {
-    btn.disabled = true;
-    btn.innerText = "Processing...";
-
-    document.getElementById("loading").style.display = "flex";
-
-    setTimeout(() => {
-        document.getElementById("loading").style.display = "none";
-        document.getElementById("modal").style.display = "flex";
-
-        showToast("Deposit confirmed");
-
-        setTimeout(() => {
-            window.location.href = "thankyou.html";
-        }, 2500);
-
-    }, 2000);
-}
-
 </script>
 
 </body>
