@@ -174,7 +174,7 @@ footer {
     <h2>Portfolio Dashboard</h2>
 
     <h3 id="portfolio">
-        $12,850.00 <span style="color:#22c55e;">+12.4%</span>
+        $12,850.00 <span id="percent" style="color:#22c55e;">+0.00%</span>
     </h3>
 </div>
 
@@ -212,7 +212,7 @@ footer {
     <button onclick="goToThankYou(this)">Done</button>
 </div>
 
-<!-- CONTACT (RESTORED) -->
+<!-- CONTACT -->
 <div class="card">
     <h2>Contact</h2>
     <p>Telegram: @Ethervision35</p>
@@ -225,14 +225,19 @@ footer {
 <script>
 
 let portfolioValue = 12850;
+let baseValue = 12850;
 
-/* AUTO GROW PORTFOLIO */
+/* AUTO GROW PORTFOLIO + % FIX */
 setInterval(() => {
+
     portfolioValue += Math.floor(Math.random() * 70);
+
+    let percent = (((portfolioValue - baseValue) / baseValue) * 100).toFixed(2);
 
     document.getElementById("portfolio").innerHTML =
         "$" + portfolioValue.toLocaleString() +
-        ' <span style="color:#22c55e;">+12.4%</span>';
+        ` <span id="percent" style="color:#22c55e;">+${percent}%</span>`;
+
 }, 5000);
 
 /* SOUND */
